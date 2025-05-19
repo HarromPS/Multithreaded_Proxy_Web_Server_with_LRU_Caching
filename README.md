@@ -64,9 +64,6 @@ make
 
 # run client 
 ./client localhost <PORT>
-
-# Run as root (needed for binding ports > 5000 and using SSL)
-sudo ./proxy_server <PORT>
 ````
 
 ---
