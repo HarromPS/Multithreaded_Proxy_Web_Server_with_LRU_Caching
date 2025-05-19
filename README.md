@@ -1,0 +1,5 @@
+Multithreaded Proxy Web Server with LRU Caching
+
+The proposed system “Multi-threaded Proxy Web Server With LRU Caching Algorithm” designs and implements a high-performance, multithreaded proxy server enhanced with LRU (Least Recently Used) caching algorithm to optimise web request handling. The system leverages multithreading (with mutex/semaphores synchronization) and LRU caching to reduce latency for frequently requested resources and saving bandwidth by data compression. Along with privacy protection while anonymizing the identity of the client from the remote servers by stripping headers. Handling HTTPs request with connect method and OpenSSL/TLS implementation for secured and encrypted communication, handling certificates, handshakes and key exchanges. This system also implements comprehensive logging and monitoring features with timestamped request with its status for troubleshooting. This proxy server demonstrates scalability of the system by handling concurrent requests while also maintaining thread safety. 
+
+![Multithreaded Proxy Web Server with LRU Caching flow diagram](./flowDiagram.png "Multithreaded Proxy Web Server with LRU Caching")

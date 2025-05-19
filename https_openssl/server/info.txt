@@ -1,0 +1,7 @@
+Server:
+run server at a port 
+e.g ./server 8000
+
+Client 
+run client by address and port number of server 
+e.g ./client localhost 8000
