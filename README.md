@@ -1,5 +1,100 @@
-Multithreaded Proxy Web Server with LRU Caching
+# 🔐 Multithreaded Secure Proxy Web Server with LRU Caching
 
-The proposed system “Multi-threaded Proxy Web Server With LRU Caching Algorithm” designs and implements a high-performance, multithreaded proxy server enhanced with LRU (Least Recently Used) caching algorithm to optimise web request handling. The system leverages multithreading (with mutex/semaphores synchronization) and LRU caching to reduce latency for frequently requested resources and saving bandwidth by data compression. Along with privacy protection while anonymizing the identity of the client from the remote servers by stripping headers. Handling HTTPs request with connect method and OpenSSL/TLS implementation for secured and encrypted communication, handling certificates, handshakes and key exchanges. This system also implements comprehensive logging and monitoring features with timestamped request with its status for troubleshooting. This proxy server demonstrates scalability of the system by handling concurrent requests while also maintaining thread safety. 
+A system-level C++ project that implements a multithreaded proxy server capable of handling both HTTP and HTTPS traffic (via CONNECT method), equipped with OpenSSL-based MITM functionality, request logging, caching, and thread-safe concurrency control.
 
-![Multithreaded Proxy Web Server with LRU Caching flow diagram](./flowDiagram.png "Multithreaded Proxy Web Server with LRU Caching")
+---
+Youtube Video Presentation
+[![Collegepredictionchatbot__Dashboards](https://github.com/user-attachments/assets/3e058efa-76d5-4f8c-9fa7-258dfe547832)](https://youtu.be/38FPKqS5gmk?feature=shared)
+---
+
+Flow Diagram
+![Multithreaded Proxy Web Server with LRU Caching flow diagram]("Multithreaded Proxy Web Server with LRU Caching")
+
+## 🚀 Features
+
+- 🔄 **Handles HTTP and HTTPS (via CONNECT)**
+- 🧵 **Multithreaded architecture** using `pthread`
+- 🔐 **OpenSSL-based SSL/TLS handling** for MITM inspection
+- 🧠 **LRU Cache** (custom-built using HashMap + Doubly Linked List)
+- 🧹 **Anonymity by stripping headers** (User-Agent, Referer, etc.)
+- 🧾 **Thread-safe request logging** with timestamps and IPs
+- 🛡️ **Mutexes & Semaphores** to ensure safe access to shared data
+
+---
+
+## ⚙️ Technologies Used
+
+- **C++**
+- **Linux System Calls**
+- **Socket Programming**
+- **POSIX Threads (`pthread`)**
+- **OpenSSL**
+- **Mutex & Semaphores**
+- **LRU Cache (manual implementation)**
+
+---
+
+## 🛠️ Setup Instructions
+
+```bash
+# Clone the repository
+git clone https://github.com/HarromPS/Multithreaded_Proxy_Web_Server_with_LRU_Caching/
+cd proxy-server
+
+# Install OpenSSL if not present
+sudo apt install libssl-dev
+
+# generate keys 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout server.key -out server.pem \
+  -subj "/CN=localhost" \
+  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+
+# Build the project
+cd https_openssl / cd OpenSSL_TLS
+cd server 
+make
+
+# run server
+./server <PORT>
+
+cd client
+make
+
+# run client 
+./client localhost <PORT>
+
+# Run as root (needed for binding ports > 5000 and using SSL)
+sudo ./proxy_server <PORT>
+````
+
+---
+
+## 📌 How It Works
+
+1. Accepts incoming client connections on specified port
+2. Parses HTTP methods (`GET`, `POST`, `CONNECT`)
+3. For HTTPS, creates a TCP tunnel and uses OpenSSL for SSL termination
+4. Uses mutex/semaphores to control access to cache and logs
+5. Logs each request with client IP, method, URL, timestamp, and cache status
+
+---
+
+## 📊 Sample Log Output
+
+```
+[2025-05-01 11:32:18 AM] | IP: 127.0.0.1 | Method: GET | URL: www.google.com | Cache Status: HIT
+[2025-05-01 11:32:25 AM] | IP: 127.0.0.1 | Method: CONNECT | URL: www.facebook.com | SSL: Handshake Success
+```
+
+---
+
+## 🔮 Future Enhancements
+
+* [ ] Support for request body parsing (e.g., full `POST`)
+* [ ] Gzip/Deflate compression handling
+* [ ] Rate limiting based on client IP
+* [ ] Machine Learning based content classification
+* [ ] Web dashboard for real-time monitoring
+
+---
