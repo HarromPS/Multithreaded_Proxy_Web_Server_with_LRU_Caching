@@ -2,6 +2,10 @@
 
 A system-level C++ project that implements a multithreaded proxy server capable of handling both HTTP and HTTPS traffic (via CONNECT method), equipped with OpenSSL-based MITM functionality, request logging, caching, and thread-safe concurrency control.
 
+Credit-
+Siddharth Sengupta : https://github.com/sid-sg/Multithreaded-Secure-FTP-Client-Server/tree/main
+Lovepreet Singh : https://github.com/AlphaDecodeX/MultiThreadedProxyServerClient
+
 ---
 Youtube Video Presentation
 [![Multithreaded Secure Proxy Web Server with LRU Caching](https://github.com/user-attachments/assets/60c3f5a1-790c-48ed-ac90-cf72428d4e37)](https://youtu.be/7TCtKU5FkFc)
